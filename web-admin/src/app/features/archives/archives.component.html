@@ -1,0 +1,136 @@
+<div class="page">
+  <header class="page-header">
+    <div>
+      <h1>Archives</h1>
+      <p class="muted">Infractions et réclamations archivées</p>
+    </div>
+    <div class="row" style="gap:0.5rem">
+      <button class="btn secondary" (click)="runArchive()" [disabled]="busy()">
+        <app-icon name="refresh" [size]="14" />
+        {{ busy() ? 'Archivage en cours...' : 'Lancer l'archivage' }}
+      </button>
+    </div>
+  </header>
+
+  @if (message()) {
+    <div class="alert ok">
+      <app-icon name="check-circle" [size]="16" />
+      <span>{{ message() }}</span>
+    </div>
+  }
+
+  <div class="tabs">
+    <button
+      class="tab"
+      [class.active]="activeTab() === 'infractions'"
+      (click)="activeTab.set('infractions')"
+    >
+      Infractions ({{ infractions().length }})
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab() === 'reclamations'"
+      (click)="activeTab.set('reclamations')"
+    >
+      Réclamations ({{ reclamations().length }})
+    </button>
+  </div>
+
+  @if (activeTab() === 'infractions') {
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Plaque</th>
+            <th>Statut</th>
+            <th>Lieu</th>
+            <th>Client</th>
+            <th>Agent Quipux</th>
+            <th>Agent Police</th>
+            <th>Archivé le</th>
+            <th>Par</th>
+            <th>Raison</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of infractions(); track item.id) {
+            <tr>
+              <td class="small">{{ shortId(item.id) }}</td>
+              <td>
+                @if (item.plaqueImmatriculation) {
+                  <span class="plate-tag">{{ item.plaqueImmatriculation }}</span>
+                } @else {
+                  <span class="muted">—</span>
+                }
+              </td>
+              <td>
+                <span class="badge" [class]="statusTone(item.status)">
+                  {{ statusLabel(item.status) }}
+                </span>
+              </td>
+              <td>{{ item.lieu || '—' }}</td>
+              <td>{{ item.clientName || '—' }}</td>
+              <td>{{ item.agentQuipuxName || '—' }}</td>
+              <td>{{ item.agentPoliceName || '—' }}</td>
+              <td class="small">{{ item.archivedAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+              <td>{{ item.archivedBy || '—' }}</td>
+              <td class="small">{{ item.archivedReason || '—' }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="10" class="empty-cell">
+                Aucune infraction archivée
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  @if (activeTab() === 'reclamations') {
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Sujet</th>
+            <th>Statut</th>
+            <th>Client</th>
+            <th>Agent</th>
+            <th>Clôturée le</th>
+            <th>Archivée le</th>
+            <th>Par</th>
+            <th>Raison</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of reclamations(); track item.id) {
+            <tr>
+              <td class="small">{{ shortId(item.id) }}</td>
+              <td>{{ item.subject || '—' }}</td>
+              <td>
+                <span class="badge" [class]="statusTone(item.status)">
+                  {{ statusLabel(item.status) }}
+                </span>
+              </td>
+              <td>{{ item.clientName || '—' }}</td>
+              <td>{{ item.agentName || '—' }}</td>
+              <td class="small">{{ item.closedAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+              <td class="small">{{ item.archivedAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+              <td>{{ item.archivedBy || '—' }}</td>
+              <td class="small">{{ item.archivedReason || '—' }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="9" class="empty-cell">
+                Aucune réclamation archivée
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
