@@ -1,0 +1,863 @@
+{
+  "info": {
+    "name": "Circulation API",
+    "description": "API pour l'application Circulation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentification",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"admin@circulation.ci\",\n  \"password\": \"Admin123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nom\": \"Doe\",\n  \"phone\": \"0712345678\",\n  \"password\": \"password123\",\n  \"cni\": \"1234567890123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register Usager",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nom\": \"Doe\",\n  \"prenom\": \"John\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"0712345678\",\n  \"password\": \"password123\",\n  \"plaqueImmatriculation\": \"AB123CD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Me (Profil)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Plaque",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plaqueImmatriculation\": \"AB123CD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/plaque",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "plaque"]
+            }
+          }
+        },
+        {
+          "name": "Activate Client",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/activate-client",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "activate-client"]
+            }
+          }
+        },
+        {
+          "name": "Declare Panne",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start\": \"2026-10-19T10:00:00Z\",\n  \"end\": \"2026-10-20T10:00:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/panne",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "panne"]
+            }
+          }
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Infractions",
+      "item": [
+        {
+          "name": "List Infractions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions"]
+            }
+          }
+        },
+        {
+          "name": "For My Plate",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions/for-my-plate?plaque=AB123CD",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions", "for-my-plate"],
+              "query": [
+                {
+                  "key": "plaque",
+                  "value": "AB123CD"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Infraction",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "infraction-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Infraction (JSON)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plate\": \"AB123CD\",\n  \"type\": \"1\",\n  \"description\": \"Stationnement gênant\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions"]
+            }
+          }
+        },
+        {
+          "name": "Create Infraction (Multipart)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "plate",
+                  "value": "AB123CD",
+                  "type": "text"
+                },
+                {
+                  "key": "type",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions"]
+            }
+          }
+        },
+        {
+          "name": "Update Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"valide\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions/:id/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions", ":id", "status"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "infraction-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Plate",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plaque\": \"AB123CD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions/:id/plate",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions", ":id", "plate"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "infraction-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Infraction",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/infractions/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infractions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "infraction-id"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Infraction Types",
+      "item": [
+        {
+          "name": "List Types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/infraction-types",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "infraction-types"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "List Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "notifications"]
+            }
+          }
+        },
+        {
+          "name": "List Unread",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications?unreadOnly=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "notifications"],
+              "query": [
+                {
+                  "key": "unreadOnly",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Read All",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications/read-all",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "notifications", "read-all"]
+            }
+          }
+        },
+        {
+          "name": "Read One",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications/:id/read",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "notifications", ":id", "read"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "notification-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Notification",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "notifications", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "notification-id"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Support / Réclamations",
+      "item": [
+        {
+          "name": "List Support",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/support",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support"]
+            }
+          }
+        },
+        {
+          "name": "Queue",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/support/queue",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support", "queue"]
+            }
+          }
+        },
+        {
+          "name": "Assigned",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/support/assigned",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support", "assigned"]
+            }
+          }
+        },
+        {
+          "name": "Create Reclamation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Problème avec mon compte\",\n  \"message\": \"Je n'arrive pas à me connecter\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/support/reclamations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support", "reclamations"]
+            }
+          }
+        },
+        {
+          "name": "Get Reclamation",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/support/reclamations/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support", "reclamations", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "reclamation-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Voici plus d'informations\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/support/reclamations/:id/messages",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support", "reclamations", ":id", "messages"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "reclamation-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/support/reclamations/:id/messages",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support", "reclamations", ":id", "messages"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "reclamation-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Close Reclamation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/support/reclamations/:id/close",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "support", "reclamations", ":id", "close"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "reclamation-id"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users (Admin/Superviseur)",
+      "item": [
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"]
+            }
+          }
+        },
+        {
+          "name": "Set Active",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/:id/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", ":id", "active"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "user-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Set Role",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"agent_quipux\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/:id/role",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", ":id", "role"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "user-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"newPassword123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/:id/password",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", ":id", "password"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "user-id"
+                }
+              ]
+            },
+            "description": "Modifier le mot de passe d'un utilisateur (Admin/Superviseur uniquement)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Wallet",
+      "item": [
+        {
+          "name": "Get Wallet",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/wallet",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "wallet"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "info": {
+    "name": "Circulation - Inscription",
+    "description": "Collection pour les inscriptions User et Proprietaire",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Inscription User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nom\": \"Doe\",\n  \"phone\": \"0712345678\",\n  \"password\": \"password123\",\n  \"cni\": \"1234567890123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "register"]
+        },
+        "description": "Inscription User : nom, téléphone, CNI (photo ou numéro), mot de passe"
+      }
+    },
+    {
+      "name": "Inscription User avec Photo CNI",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "nom",
+              "value": "Doe",
+              "type": "text"
+            },
+            {
+              "key": "phone",
+              "value": "0712345678",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "text"
+            },
+            {
+              "key": "cniPhoto",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "register"]
+        },
+        "description": "Inscription User avec photo de CNI (multipart)"
+      }
+    },
+    {
+      "name": "Inscription Proprietaire",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nom\": \"Doe\",\n  \"prenom\": \"John\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"0712345678\",\n  \"password\": \"password123\",\n  \"plaqueImmatriculation\": \"AB123CD\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "register"]
+        },
+        "description": "Inscription Proprietaire : nom, prénom, email, téléphone, plaque d'immatriculation, mot de passe, CNI (facultatif)"
+      }
+    },
+    {
+      "name": "Inscription Proprietaire avec CNI",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nom\": \"Doe\",\n  \"prenom\": \"John\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"0712345678\",\n  \"password\": \"password123\",\n  \"plaqueImmatriculation\": \"AB123CD\",\n  \"cni\": \"1234567890123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "register"]
+        },
+        "description": "Inscription Proprietaire avec CNI (facultatif)"
+      }
+    },
+    {
+      "name": "Inscription Proprietaire avec Photo CNI",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "nom",
+              "value": "Doe",
+              "type": "text"
+            },
+            {
+              "key": "prenom",
+              "value": "John",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "john.doe@example.com",
+              "type": "text"
+            },
+            {
+              "key": "phone",
+              "value": "0712345678",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "text"
+            },
+            {
+              "key": "plaqueImmatriculation",
+              "value": "AB123CD",
+              "type": "text"
+            },
+            {
+              "key": "cniPhoto",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "register"]
+        },
+        "description": "Inscription Proprietaire avec photo de CNI (multipart)"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"identifier\": \"0712345678\",\n  \"password\": \"password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "login"]
+        },
+        "description": "Login avec téléphone ou email"
+      }
+    }
+  ]
+}

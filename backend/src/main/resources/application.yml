@@ -1,0 +1,47 @@
+server:
+  port: 8081
+  address: 0.0.0.0
+
+spring:
+  application:
+    name: circulation-api
+  config:
+    import: optional:file:./.env[.properties]
+  datasource:
+    # PostgreSQL par défaut. Surcharger via SPRING_DATASOURCE_* si besoin.
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/circulation}
+    username: ${SPRING_DATASOURCE_USERNAME:circulation}
+    password: ${SPRING_DATASOURCE_PASSWORD:circulation}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.postgresql.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 250MB
+
+app:
+  jwt:
+    # À SURCHARGER en production via la variable d'environnement APP_JWT_SECRET.
+    secret: ${APP_JWT_SECRET:circulation-ci-secret-key-change-me-in-production-please-0123456789}
+    ttl-seconds: 86400
+  upload-dir: ${APP_UPLOAD_DIR:uploads}
+  seed:
+    admin-email: ${APP_ADMIN_EMAIL:admin@circulation.ci}
+    admin-password: ${APP_ADMIN_PASSWORD:Admin123!}
+
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID:}
+  auth-token: ${TWILIO_AUTH_TOKEN:}
+  phone-number: ${TWILIO_PHONE_NUMBER:}
+  enabled: ${TWILIO_ENABLED:false}
+
+logging:
+  level:
+    org.springframework.security: INFO
