@@ -1,6 +1,7 @@
 package ci.circulation.api.repo;
 
 import ci.circulation.api.domain.Reclamation;
+import java.time.Instant;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,4 +11,5 @@ public interface ReclamationRepository extends JpaRepository<Reclamation, String
     List<Reclamation> findByAssignedToOrderByCreatedAtDesc(String agentId);
     List<Reclamation> findByClosedFalseOrderByCreatedAtDesc();
     List<Reclamation> findAllByOrderByCreatedAtDesc();
+    List<Reclamation> findByClosedTrueAndUpdatedAtBefore(Instant before);
 }

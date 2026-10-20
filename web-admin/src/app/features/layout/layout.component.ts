@@ -24,6 +24,7 @@ const PAGE_TITLES: Record<string, string> = {
   wallet: 'Portefeuille',
   profil: 'Mon profil',
   utilisateurs: 'Équipe & accès',
+  archives: 'Archives',
 };
 
 @Component({
@@ -120,6 +121,10 @@ const PAGE_TITLES: Record<string, string> = {
               <a class="nav-link" routerLink="/utilisateurs" routerLinkActive="active" (click)="closeNav()">
                 <app-icon name="users" [size]="18" />
                 Équipe & accès
+              </a>
+              <a class="nav-link" routerLink="/archives" routerLinkActive="active" (click)="closeNav()">
+                <app-icon name="archive" [size]="18" />
+                Archives
               </a>
             </div>
           }

@@ -54,6 +54,11 @@ export const routes: Routes = [
         canActivate: [managerGuard],
         loadComponent: () => import('./features/users/users.component').then((m) => m.UsersComponent),
       },
+      {
+        path: 'archives',
+        canActivate: [managerGuard],
+        loadComponent: () => import('./features/archives/archives.component').then((m) => m.ArchivesComponent),
+      },
     ],
   },
   { path: 'infractions', redirectTo: 'signalements' },

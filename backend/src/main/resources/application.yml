@@ -35,6 +35,15 @@ app:
   seed:
     admin-email: ${APP_ADMIN_EMAIL:admin@circulation.ci}
     admin-password: ${APP_ADMIN_PASSWORD:Admin123!}
+  archive:
+    # Activer/désactiver l'archivage automatique
+    enabled: ${APP_ARCHIVE_ENABLED:true}
+    # Cron expression pour l'archivage automatique (par défaut: tous les jours à 2h du matin)
+    cron: ${APP_ARCHIVE_CRON:0 0 2 * * ?}
+    # Délai avant archivage des infractions (en jours)
+    infraction-days: ${APP_ARCHIVE_INFRACTION_DAYS:90}
+    # Délai avant archivage des réclamations (en jours)
+    reclamation-days: ${APP_ARCHIVE_RECLAMATION_DAYS:60}
 
 twilio:
   account-sid: ${TWILIO_ACCOUNT_SID:}

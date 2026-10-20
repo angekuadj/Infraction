@@ -218,6 +218,11 @@ import { Component, input } from '@angular/core';
           <circle cx="7.5" cy="15.5" r="3.5" />
           <path d="m10 13 8-8 2 2-2 2 2 2-2 2-2-2-3 3" />
         }
+        @case ('archive') {
+          <polyline points="21 8 21 21 3 21 3 8" />
+          <rect x="1" y="3" width="22" height="5" />
+          <path d="M10 12h4" />
+        }
         @default {
           <circle cx="12" cy="12" r="9" />
         }
