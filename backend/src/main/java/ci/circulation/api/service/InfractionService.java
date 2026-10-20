@@ -181,6 +181,14 @@ public class InfractionService {
         Infraction i = get(user, id);
         i.setStatus(status.toLowerCase());
         i.setAgentName(DtoMapper.displayName(user));
+
+        // Enregistrer le nom de l'agent selon son rôle
+        if (SecurityUtils.isAgentQuipux(user)) {
+            i.setAgentQuipuxName(DtoMapper.displayName(user));
+        } else if (SecurityUtils.isAgentPolice(user)) {
+            i.setAgentPoliceName(DtoMapper.displayName(user));
+        }
+
         // Verrouiller le signalement pour l'agent qui le traite
         i.setLockedBy(user.getId());
         i.setLockedByUserId(user.getId());

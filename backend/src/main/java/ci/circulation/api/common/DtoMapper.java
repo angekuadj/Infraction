@@ -107,6 +107,8 @@ public final class DtoMapper {
         m.put("userName", i.getUserName());
         m.put("agentName", i.getAgentName());
         m.put("agentPolice", i.getAgentPolice());
+        m.put("agentQuipuxName", i.getAgentQuipuxName());
+        m.put("agentPoliceName", i.getAgentPoliceName());
         m.put("lockedBy", i.getLockedBy());
         m.put("lockedByUserId", i.getLockedByUserId());
         m.put("lockedAt", iso(i.getLockedAt()));

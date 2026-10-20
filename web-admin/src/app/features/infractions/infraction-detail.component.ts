@@ -279,8 +279,12 @@ interface Rect {
                 <span class="detail-value">{{ item.clientName || item.userName || '—' }}</span>
               </div>
               <div class="detail-item">
-                <span class="detail-label">Agent en charge</span>
-                <span class="detail-value">{{ item.agentName || 'Non assigné' }}</span>
+                <span class="detail-label">Agent Quipux</span>
+                <span class="detail-value">{{ item.agentQuipuxName || 'Non assigné' }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Agent Police</span>
+                <span class="detail-value">{{ item.agentPoliceName || 'Non assigné' }}</span>
               </div>
               <div class="detail-item">
                 <span class="detail-label">Priorité</span>

@@ -37,6 +37,8 @@ public class Infraction {
     private String userName;
     private String agentName;
     private String agentPolice;
+    private String agentQuipuxName;
+    private String agentPoliceName;
 
     private String lockedBy;
     private String lockedByUserId;
@@ -117,6 +119,10 @@ public class Infraction {
     public void setAgentName(String agentName) { this.agentName = agentName; }
     public String getAgentPolice() { return agentPolice; }
     public void setAgentPolice(String agentPolice) { this.agentPolice = agentPolice; }
+    public String getAgentQuipuxName() { return agentQuipuxName; }
+    public void setAgentQuipuxName(String agentQuipuxName) { this.agentQuipuxName = agentQuipuxName; }
+    public String getAgentPoliceName() { return agentPoliceName; }
+    public void setAgentPoliceName(String agentPoliceName) { this.agentPoliceName = agentPoliceName; }
     public String getLockedBy() { return lockedBy; }
     public void setLockedBy(String lockedBy) { this.lockedBy = lockedBy; }
     public String getLockedByUserId() { return lockedByUserId; }

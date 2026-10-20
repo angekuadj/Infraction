@@ -107,6 +107,8 @@ export interface Infraction {
   userName?: string;
   agentName?: string;
   agentPolice?: string;
+  agentQuipuxName?: string;
+  agentPoliceName?: string;
   createdAt?: string;
   updatedAt?: string;
   reportedAt?: string;
